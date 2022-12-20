@@ -1,0 +1,37 @@
+{% assign expire_timestamp = 'now' | date: '%s' | minus: 86400 %}
+{% assign update_timestamp = 1573929130 %}
+
+{% if expire_timestamp < update_timestamp %}
+// Intercept Third Party Scripts
+(function(){
+    window['addEventListener'] = (function(){
+        var original = this['addEventListener'];
+        return function() {
+            if (arguments[0] == 'load' && arguments[1] && arguments[1].name == 'asyncLoad') {
+                console.log("Disable asyncLoad in favour of hyperLoad!");
+            } else {
+                return original.apply(this, arguments);
+            }
+        }
+    }.bind(window))();
+
+    (function() {
+        function hyperLoad() {
+            var hsUrls = ["{{ 'klaviyo.js' | asset_url | split: '?' | first }}?company_id=JfPmcr&shop=wiccan-skincare.myshopify.com", "{{ 'loox.1566111517668.js' | asset_url | split: '?' | first }}?shop=wiccan-skincare.myshopify.com", "{{ 'w.js' | asset_url | split: '?' | first }}?shop=wiccan-skincare.myshopify.com"];
+            for (var i = 0; i < hsUrls.length; i++) {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = hsUrls[i];
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+            }
+        };
+        if (window.attachEvent) {
+            window.attachEvent('onload', hyperLoad);
+        } else {
+            window.addEventListener('load', hyperLoad, false);
+        }
+    })();
+})();
+{% endif %}

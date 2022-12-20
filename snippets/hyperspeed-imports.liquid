@@ -1,0 +1,13 @@
+<!-- Lazyload + Responsive Images-->
+<script defer src="{{ 'hs-lazysizes.min.js' | asset_url }}"></script>
+<script defer src="{{ 'hs-image-change.min.js' | asset_url }}"></script>
+<link rel="preload" href="{{ 'hyperspeed.scss.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>{% comment %}hs-link-start-1176{% endcomment %}{% if template.name == 'index' or template.name == 'collection' or template.name == 'product' %}<noscript class="hs-deferred-styles"><link rel="stylesheet" href="{{ 'hyperspeed.scss.css' | asset_url }}"></noscript>{% else %}<link rel="stylesheet" href="{{ 'hyperspeed.scss.css' | asset_url }}">{% endif %}{% comment %}hs-link-end-1176{% endcomment %}</noscript><!-- Third party app optimization -->
+<script>{% include 'hs-3p-optimize.js' %}</script>
+
+<!-- CSS Preloading -->
+<script>{% include 'hs-css-preload.js' %}</script>
+
+<!-- instant.load -->
+<script defer src="{{ 'hs-instantload.min.js' | asset_url }}" type="module"></script>
+

@@ -1,0 +1,4 @@
+{% assign hs_data_widths = "[50,90,180,360,480,720,900,1080,1296,1512]" %}
+{% assign hs_img_src = image | img_url: '120x' %}
+{% assign hs_data_src = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+{% assign hs_aspect_ratio = image.aspect_ratio %}

@@ -1,0 +1,47 @@
+<div class="{{section.settings.showbanner}}" style="background: url({{section.settings.bannerimg | img_url: 'master' }}) no-repeat center center fixed;">
+    <p>&nbsp;</p>
+</div>
+ <div class="row single-column{% if section.settings.center-content--enabled %} center {% endif %}">
+  <div class="columns">
+    <div class="page-content">
+      <h1 class="page-title">{{ page.title }}</h1>
+      <div class="rte-content colored-links">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .dbno {display:none;}
+    .dbyes {width:100%;overflow:hidden;min-height:400px;z-index: 1;margin-bottom: 30px;margin-top: -30px}
+</style>
+
+{% schema %}
+{
+  "name": "Pages",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "center-content--enabled",
+      "label": "Center content",
+      "default": false
+    },
+    {
+        "type": "image_picker",
+        "label": "Banner Image",
+        "id": "bannerimg"
+    },
+    {
+       "type":      "radio",
+       "id":        "showbanner",
+       "label":     "Show Banner",
+       "options": [
+         { "value": "dbyes", "label": "Yes" },
+         { "value": "dbno", "label": "No" }
+       ],
+       "default":   "dbno"
+    }
+  ]
+}
+{% endschema %}
